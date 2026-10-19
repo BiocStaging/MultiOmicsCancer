@@ -1,6 +1,14 @@
 # MultiOmicsCancer
 
-An R package for integrative multi-omics analysis in cancer research, with a novel Immune Methylation Score (IMS) framework and built-in validation tools.
+<!-- badges: start -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23467139.svg)](https://doi.org/10.5281/zenodo.23467139)
+[![R-CMD-check](https://github.com/maryam6770/MultiOmicsCancer/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/maryam6770/MultiOmicsCancer/actions/workflows/R-CMD-check.yaml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
+An R package for integrative multi-omics analysis in cancer research, with a novel **Immune Methylation Score (IMS)** framework and built-in validation tools.
+
+---
 
 ## Key Features
 
@@ -18,8 +26,10 @@ An R package for integrative multi-omics analysis in cancer research, with a nov
 - `estimate_purity()` — ESTIMATE tumor purity and immune score
 - `validate_proteins()` — Protein-level validation via UniProt
 
+---
+
 ## Installation
 
 ```r
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-remotes::install_github("Maryam-Emami/MultiOmicsCancer")
+remotes::install_github("maryam6770/MultiOmicsCancer")
