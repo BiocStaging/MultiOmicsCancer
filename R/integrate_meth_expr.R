@@ -61,6 +61,7 @@
 #' mae <- MultiAssayExperiment(experiments = list(methylation = se_meth, expression = se_expr), colData = clin_data)
 #'
 #' res <- integrate_meth_expr(mae, gene_name = "Gene1")
+#' @export
 integrate_meth_expr <- function(mae,
                                 meth_assay = "methylation",
                                 expr_assay = "expression",

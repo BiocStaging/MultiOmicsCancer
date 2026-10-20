@@ -65,6 +65,7 @@
 #'
 #' deg <- analyze_expression(mae, group_levels = c("normal", "tumor"))
 #' head(deg)
+#' @export
 analyze_expression <- function(mae,
                                assay_name = "expression",
                                group_column = "sample_type",

@@ -60,6 +60,7 @@
 #'
 #' res <- analyze_methylation(mae, group_levels = c("normal", "tumor"))
 #' head(res)
+#' @export
 analyze_methylation <- function(mae,
                                 assay_name = "methylation",
                                 group_column = "sample_type",

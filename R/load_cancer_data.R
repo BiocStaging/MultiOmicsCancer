@@ -29,6 +29,7 @@
 #' # It may take a few minutes to complete.
 #' brca_data <- load_cancer_data("brca_tcga")
 #' }
+#' @export
 load_cancer_data <- function(cancer_type,
                              data_types = c("methylation", "expression", "mirna"),
                              source = "cBioPortal",

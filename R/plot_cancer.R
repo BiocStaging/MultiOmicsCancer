@@ -49,6 +49,7 @@
 #' mae <- MultiAssayExperiment(experiments = list(expression = se_expr), colData = clin_data)
 #'
 #' plot_cancer(mae, plot_type = "boxplot", feature_name = "Gene1")
+#' @export
 plot_cancer <- function(data = NULL,
                         plot_type = c("volcano", "heatmap", "correlation", "survival"),
                         title = NULL,
@@ -93,6 +94,7 @@ plot_cancer <- function(data = NULL,
 
 #' @keywords internal
 #' @noRd
+#' @export
 plot_volcano <- function(data, title, p_cutoff, fc_cutoff,
                          color_up, color_down, color_ns, max_labels, verbose) {
 
@@ -185,6 +187,7 @@ plot_volcano <- function(data, title, p_cutoff, fc_cutoff,
 
 #' @keywords internal
 #' @noRd
+#' @export
 plot_correlation <- function(data, title, p_cutoff,
                              color_up, color_down, color_ns, verbose) {
 
@@ -229,6 +232,7 @@ plot_correlation <- function(data, title, p_cutoff,
 
 #' @keywords internal
 #' @noRd
+#' @export
 plot_survival <- function(surv_result, title) {
 
   if (is.null(surv_result)) {

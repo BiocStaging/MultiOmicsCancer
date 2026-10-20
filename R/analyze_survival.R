@@ -48,6 +48,7 @@
 #' mae <- MultiAssayExperiment(experiments = list(expression = se_expr), colData = clin_data)
 #'
 #' res <- analyze_survival(mae, feature_name = "Gene1", time_column = "OS.time", event_column = "OS")
+#' @export
 analyze_survival <- function(mae,
                              time_column = "OS.time",
                              event_column = "OS",
