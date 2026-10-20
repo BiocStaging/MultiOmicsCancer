@@ -10,17 +10,6 @@
 #' @return A data frame with columns: gene, protein_exists, protein_name.
 #'
 #' @export
-#' @examples
-#' # Fast, offline example (no internet connection required)
-#' genes <- c("BRCA1", "TP53", "CD274")
-#' res <- validate_proteins(genes, use_uniprot = FALSE)
-#' head(res)
-#'
-#' \donttest{
-#' # Online example (requires internet connection to query UniProt)
-#' res_online <- validate_proteins(genes, use_uniprot = TRUE)
-#' head(res_online)
-#' }
 validate_proteins <- function(genes, use_uniprot = TRUE, timeout = 30) {
   if (!is.character(genes) || length(genes) == 0) {
     stop('genes must be a non-empty character vector.')

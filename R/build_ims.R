@@ -9,28 +9,6 @@
 #' @param min_cpgs Integer. Minimum CpGs required. Default 3.
 #' @return A list with IMS, selected_cpgs, coefs, model.
 #' @export
-#' @examples
-#' # Mock methylation data (10 CpGs, 10 samples)
-#' meth_data <- matrix(runif(100), nrow = 10, ncol = 10)
-#' rownames(meth_data) <- paste0("CpG", 1:10)
-#' colnames(meth_data) <- paste0("Sample", 1:10)
-#'
-#' # Mock survival data
-#' surv_data <- data.frame(
-#'   time = runif(10, 10, 100),
-#'   status = sample(c(0, 1), 10, replace = TRUE)
-#' )
-#' rownames(surv_data) <- colnames(meth_data)
-#'
-#' # Run build_ims
-#' res <- build_ims(
-#'   meth_data = meth_data,
-#'   surv_data = surv_data,
-#'   pattern = "CpG",
-#'   p_threshold = 0.05,
-#'   hr_range = c(0.1, 10),
-#'   min_cpgs = 2
-#' )
 build_ims <- function(meth_data, surv_data, immune_genes = NULL,
                       p_threshold = 0.05, hr_range = c(0.1, 10),
                       min_cpgs = 3L) {

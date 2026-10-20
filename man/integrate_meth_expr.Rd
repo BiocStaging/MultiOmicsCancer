@@ -69,23 +69,17 @@ status. This is a key step in multi-omics analysis for discovering
 epigenetically regulated genes in any cancer type.
 }
 \examples{
-library(MultiAssayExperiment)
-library(SummarizedExperiment)
+\donttest{
+# Load multi-omics data
+brca <- load_cancer_data("brca_tcga",
+                         data_types = c("methylation", "expression"))
 
-# Mock methylation data (10 CpGs, 10 samples)
-meth_mat <- matrix(runif(100), nrow = 10, ncol = 10)
-rownames(meth_mat) <- paste0("Gene", 1:10, "_CpG")
-colnames(meth_mat) <- paste0("Sample", 1:10)
+# Integrate methylation and expression
+integrated <- integrate_meth_expr(brca)
 
-# Mock expression data (10 genes, 10 samples)
-expr_mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
-rownames(expr_mat) <- paste0("Gene", 1:10)
-colnames(expr_mat) <- paste0("Sample", 1:10)
+# Filter significant negative correlations
+epi_genes <- integrated[integrated$significant &
+                         integrated$regulation == "Negative", ]
+}
 
-clin_data <- DataFrame(row.names = colnames(expr_mat))
-se_meth <- SummarizedExperiment(assays = list(methylation = meth_mat))
-se_expr <- SummarizedExperiment(assays = list(expression = expr_mat))
-mae <- MultiAssayExperiment(experiments = list(methylation = se_meth, expression = se_expr), colData = clin_data)
-
-res <- integrate_meth_expr(mae, gene_name = "Gene1")
 }

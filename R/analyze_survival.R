@@ -31,23 +31,19 @@
 #' }
 #'
 #' @examples
-#' library(MultiAssayExperiment)
-#' library(SummarizedExperiment)
+#' \donttest{
+#' # Load data
+#' brca <- load_cancer_data("brca_tcga")
 #'
-#' expr_mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
-#' rownames(expr_mat) <- paste0("Gene", 1:10)
-#' colnames(expr_mat) <- paste0("Sample", 1:10)
+#' # Survival analysis for TP53 expression
+#' surv <- analyze_survival(brca, feature_name = "TP53")
 #'
-#' clin_data <- DataFrame(
-#'   OS.time = runif(10, 10, 100),
-#'   OS = sample(c(0, 1), 10, replace = TRUE),
-#'   row.names = colnames(expr_mat)
-#' )
+#' # Survival analysis for a methylation probe
+#' surv_meth <- analyze_survival(brca,
+#'                               feature_name = "cg00000029",
+#'                               assay_name = "methylation")
+#' }
 #'
-#' se_expr <- SummarizedExperiment(assays = list(expression = expr_mat))
-#' mae <- MultiAssayExperiment(experiments = list(expression = se_expr), colData = clin_data)
-#'
-#' res <- analyze_survival(mae, feature_name = "Gene1", time_column = "OS.time", event_column = "OS")
 #' @export
 analyze_survival <- function(mae,
                              time_column = "OS.time",

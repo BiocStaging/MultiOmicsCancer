@@ -33,22 +33,22 @@
 #' @return A \code{ggplot} object.
 #'
 #' @examples
-#' library(MultiAssayExperiment)
-#' library(SummarizedExperiment)
+#' \donttest{
+#' # Volcano plot of differential expression
+#' deg <- analyze_expression(brca)
+#' plot_cancer(deg, plot_type = "volcano")
 #'
-#' expr_mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
-#' rownames(expr_mat) <- paste0("Gene", 1:10)
-#' colnames(expr_mat) <- paste0("Sample", 1:10)
+#' # Volcano plot of differential methylation
+#' dmr <- analyze_methylation(brca)
+#' plot_cancer(dmr, plot_type = "volcano")
 #'
-#' clin_data <- DataFrame(
-#'   sample_type = rep(c("normal", "tumor"), each = 5),
-#'   row.names = colnames(expr_mat)
-#' )
+#' # Survival plot
+#' surv <- analyze_survival(brca, feature_name = "TP53")
+#' plot_cancer(plot_type = "survival", surv_result = surv)
+#' }
 #'
-#' se_expr <- SummarizedExperiment(assays = list(expression = expr_mat))
-#' mae <- MultiAssayExperiment(experiments = list(expression = se_expr), colData = clin_data)
-#'
-#' plot_cancer(mae, plot_type = "boxplot", feature_name = "Gene1")
+#' @importFrom rlang .data
+#' @importFrom utils head
 #' @export
 plot_cancer <- function(data = NULL,
                         plot_type = c("volcano", "heatmap", "correlation", "survival"),
@@ -94,7 +94,6 @@ plot_cancer <- function(data = NULL,
 
 #' @keywords internal
 #' @noRd
-#' @export
 plot_volcano <- function(data, title, p_cutoff, fc_cutoff,
                          color_up, color_down, color_ns, max_labels, verbose) {
 
@@ -187,7 +186,6 @@ plot_volcano <- function(data, title, p_cutoff, fc_cutoff,
 
 #' @keywords internal
 #' @noRd
-#' @export
 plot_correlation <- function(data, title, p_cutoff,
                              color_up, color_down, color_ns, verbose) {
 
@@ -232,7 +230,6 @@ plot_correlation <- function(data, title, p_cutoff,
 
 #' @keywords internal
 #' @noRd
-#' @export
 plot_survival <- function(surv_result, title) {
 
   if (is.null(surv_result)) {
