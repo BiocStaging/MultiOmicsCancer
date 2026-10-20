@@ -13,9 +13,5 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  
+  eval = FALSE
 )
-
-```{r session-info}
-sessionInfo()
-```
