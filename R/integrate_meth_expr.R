@@ -42,7 +42,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Load multi-omics data
 #' brca <- load_cancer_data("brca_tcga",
 #'                          data_types = c("methylation", "expression"))

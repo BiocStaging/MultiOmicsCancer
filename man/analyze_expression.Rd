@@ -76,7 +76,7 @@ type. Supports both \code{limma} (for log-transformed or normalized data)
 and \code{DESeq2} (for raw count data).
 }
 \examples{
-\donttest{
+\dontrun{
 # Load data
 brca <- load_cancer_data("brca_tcga")
 

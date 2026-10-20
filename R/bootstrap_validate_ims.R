@@ -69,6 +69,7 @@ bootstrap_validate_ims <- function(meth_data, surv_data, immune_genes = NULL,
     summary(fit)$concordance[1]
   }
 
+  set.seed(seed)
   n <- nrow(surv_data)
   full_sel <- fit_pipeline(seq_len(n))
   apparent <- compute_cindex(full_sel, seq_len(n))

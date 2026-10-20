@@ -45,7 +45,7 @@ user-provided datasets. The function returns a \code{MultiAssayExperiment}
 object that can be used by all downstream analysis functions in the package.
 }
 \examples{
-\donttest{
+\dontrun{
 # Load breast cancer data from cBioPortal (all genes)
 brca <- load_cancer_data("brca_tcga")
 

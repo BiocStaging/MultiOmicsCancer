@@ -31,7 +31,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Load data
 #' brca <- load_cancer_data("brca_tcga")
 #'
