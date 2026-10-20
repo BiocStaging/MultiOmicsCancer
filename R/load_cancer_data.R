@@ -24,7 +24,7 @@
 #'   layers and associated clinical data.
 #'
 #' @examples
-#' \dontrun{
+#' if (interactive()) {
 #' # Load breast cancer data from cBioPortal (all genes)
 #' brca <- load_cancer_data("brca_tcga")
 #'

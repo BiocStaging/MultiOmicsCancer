@@ -20,3 +20,16 @@ Computes ESTIMATE scores (Stromal, Immune, ESTIMATE) and Tumor Purity
 from gene expression data using the ESTIMATE algorithm.
 Requires package 'tidyestimate'.
 }
+\examples{
+# Source: Mock data simulated to demonstrate the ESTIMATE algorithm.
+set.seed(123)
+expr_mat <- matrix(rnorm(1000), nrow = 100, ncol = 10)
+rownames(expr_mat) <- paste0("GENE", 1:100)
+colnames(expr_mat) <- paste0("Sample", 1:10)
+tryCatch({
+  res <- estimate_purity(expr_mat)
+  head(res)
+}, error = function(e) {
+  message("estimate_purity requires 'tidyestimate' package.")
+})
+}

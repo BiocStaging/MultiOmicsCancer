@@ -29,3 +29,22 @@ Delta C-index, and LRT p-value.
 Compares prognostic performance of IMS vs a clinical variable
 (e.g., Stage) using Cox models and likelihood ratio test.
 }
+\examples{
+# Source: Mock data simulated for demonstration purposes.
+set.seed(123)
+n <- 60
+ims_values <- setNames(rnorm(n), paste0("Sample", 1:n))
+surv_data <- data.frame(
+  time = runif(n, 10, 100),
+  status = sample(c(0, 1), n, replace = TRUE),
+  row.names = names(ims_values)
+)
+clinical_var <- setNames(
+  sample(c("Low", "High"), n, replace = TRUE),
+  names(ims_values)
+)
+res <- compare_ims_clinical(
+  ims_values = ims_values, surv_data = surv_data,
+  clinical_var = clinical_var, var_name = "Stage"
+)
+}

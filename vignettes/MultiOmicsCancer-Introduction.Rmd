@@ -15,3 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   eval = FALSE
 )
+
+```{r session-info}
+sessionInfo()
+```

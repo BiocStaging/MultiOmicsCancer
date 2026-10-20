@@ -1,0 +1,6 @@
+# MultiOmicsCancer 0.99.2
+
+* Added runnable examples for all exported functions
+* Updated biocViews to valid Bioconductor terms
+* Removed set.seed() from bootstrap_validate_ims()
+* Updated DESCRIPTION with URL and BugReports

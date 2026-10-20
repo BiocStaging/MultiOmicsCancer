@@ -19,3 +19,9 @@ A data frame with columns: gene, protein_exists, protein_name.
 \description{
 Validates genes using UniProt (protein existence).
 }
+\examples{
+# Source: Mock data for offline demonstration.
+genes <- c("BRCA1", "TP53", "CD274")
+res <- validate_proteins(genes, use_uniprot = FALSE)
+head(res)
+}

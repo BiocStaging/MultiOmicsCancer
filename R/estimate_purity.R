@@ -9,6 +9,18 @@
 #' @param is_affymetrix Logical. TRUE if data is from Affymetrix arrays.
 #'   Default FALSE (RNA-seq).
 #' @return A data frame with columns: sample, stromal, immune, estimate, purity.
+#' @examples
+#' # Source: Mock data simulated to demonstrate the ESTIMATE algorithm.
+#' set.seed(123)
+#' expr_mat <- matrix(rnorm(1000), nrow = 100, ncol = 10)
+#' rownames(expr_mat) <- paste0("GENE", 1:100)
+#' colnames(expr_mat) <- paste0("Sample", 1:10)
+#' tryCatch({
+#'   res <- estimate_purity(expr_mat)
+#'   head(res)
+#' }, error = function(e) {
+#'   message("estimate_purity requires 'tidyestimate' package.")
+#' })
 #' @export
 estimate_purity <- function(expr_data, is_affymetrix = FALSE) {
   if (!requireNamespace('tidyestimate', quietly = TRUE)) {

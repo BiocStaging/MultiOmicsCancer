@@ -33,3 +33,20 @@ A list with IMS, selected_cpgs, coefs, model.
 \description{
 Build an Immune Methylation Score (IMS)
 }
+\examples{
+# Source: Mock data simulated for demonstration purposes.
+set.seed(123)
+meth_data <- matrix(runif(100), nrow = 10, ncol = 10)
+rownames(meth_data) <- paste0("CD274_cg", 1:10)
+colnames(meth_data) <- paste0("Sample", 1:10)
+surv_data <- data.frame(
+  time = runif(10, 10, 100),
+  status = sample(c(0, 1), 10, replace = TRUE)
+)
+rownames(surv_data) <- colnames(meth_data)
+res <- build_ims(
+  meth_data = meth_data, surv_data = surv_data,
+  immune_genes = c("CD274"), p_threshold = 1,
+  hr_range = c(0, 100), min_cpgs = 2
+)
+}

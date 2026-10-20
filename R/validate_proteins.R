@@ -9,6 +9,11 @@
 #'
 #' @return A data frame with columns: gene, protein_exists, protein_name.
 #'
+#' @examples
+#' # Source: Mock data for offline demonstration.
+#' genes <- c("BRCA1", "TP53", "CD274")
+#' res <- validate_proteins(genes, use_uniprot = FALSE)
+#' head(res)
 #' @export
 validate_proteins <- function(genes, use_uniprot = TRUE, timeout = 30) {
   if (!is.character(genes) || length(genes) == 0) {

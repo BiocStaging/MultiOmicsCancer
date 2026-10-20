@@ -36,3 +36,20 @@ and the bootstrap distribution.
 \description{
 Nested Bootstrap Validation for IMS
 }
+\examples{
+# Source: Mock data simulated for demonstration purposes.
+set.seed(123)
+meth_data <- matrix(runif(100), nrow = 10, ncol = 10)
+rownames(meth_data) <- paste0("CD274_cg", 1:10)
+colnames(meth_data) <- paste0("Sample", 1:10)
+surv_data <- data.frame(
+  time = runif(10, 10, 100),
+  status = sample(c(0, 1), 10, replace = TRUE)
+)
+rownames(surv_data) <- colnames(meth_data)
+res <- bootstrap_validate_ims(
+  meth_data = meth_data, surv_data = surv_data,
+  immune_genes = c("CD274"), B = 5,
+  p_threshold = 1, min_cpgs = 2
+)
+}
