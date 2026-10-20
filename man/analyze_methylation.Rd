@@ -70,23 +70,21 @@ Performs differential methylation analysis between tumor and normal samples
 the \code{limma} framework for linear modeling of methylation beta values.
 }
 \examples{
-\dontrun{
-# Load data
-brca <- load_cancer_data("brca_tcga")
+library(MultiAssayExperiment)
+library(SummarizedExperiment)
 
-# Differential methylation: normal vs tumor
-dmr <- analyze_methylation(
-  brca,
-  group_column = "sample_type",
-  group_levels = c("Solid Tissue Normal", "Primary Tumor")
+meth_mat <- matrix(runif(100), nrow = 10, ncol = 10)
+rownames(meth_mat) <- paste0("CpG", 1:10)
+colnames(meth_mat) <- paste0("Sample", 1:10)
+
+clin_data <- DataFrame(
+  sample_type = rep(c("normal", "tumor"), each = 5),
+  row.names = colnames(meth_mat)
 )
 
-# Filter significant probes
-sig_dmr <- dmr[dmr$significant, ]
+se_meth <- SummarizedExperiment(assays = list(methylation = meth_mat))
+mae <- MultiAssayExperiment(experiments = list(methylation = se_meth), colData = clin_data)
 
-# More sensitive analysis with lower thresholds
-dmr_sensitive <- analyze_methylation(brca, delta_beta = 0.05,
-                                      p_cutoff = 0.01)
-}
-
+res <- analyze_methylation(mae, group_levels = c("normal", "tumor"))
+head(res)
 }

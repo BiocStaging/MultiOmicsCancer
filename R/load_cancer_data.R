@@ -24,25 +24,11 @@
 #'   layers and associated clinical data.
 #'
 #' @examples
-#' \dontrun{
-#' # Load breast cancer data from cBioPortal (all genes)
-#' brca <- load_cancer_data("brca_tcga")
-#'
-#' # Load only selected genes (faster)
-#' brca <- load_cancer_data(
-#'   "brca_tcga",
-#'   data_types = c("methylation", "expression"),
-#'   genes = c("TP53", "BRCA1", "BRCA2", "EGFR")
-#' )
-#'
-#' # Load custom data
-#' custom <- load_cancer_data("my_study",
-#'                            source = "custom",
-#'                            custom_data = list(methylation = meth_matrix,
-#'                                               expression = expr_matrix))
+#' \donttest{
+#' # This function downloads data from TCGA and requires an internet connection.
+#' # It may take a few minutes to complete.
+#' brca_data <- load_cancer_data("brca_tcga")
 #' }
-#'
-#' @export
 load_cancer_data <- function(cancer_type,
                              data_types = c("methylation", "expression", "mirna"),
                              source = "cBioPortal",

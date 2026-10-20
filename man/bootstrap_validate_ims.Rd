@@ -36,3 +36,27 @@ and the bootstrap distribution.
 \description{
 Nested Bootstrap Validation for IMS
 }
+\examples{
+# Mock methylation data (5 CpGs, 15 samples)
+# CpG names must match the immune gene list format (e.g., Gene_CpG)
+meth_data <- matrix(runif(75), nrow = 5, ncol = 15)
+rownames(meth_data) <- c("CD274_cg1", "CD274_cg2", "CD274_cg3", "PDCD1_cg1", "PDCD1_cg2")
+colnames(meth_data) <- paste0("Sample", 1:15)
+
+# Mock survival data
+surv_data <- data.frame(
+  time = runif(15, 10, 100),
+  status = sample(c(0, 1), 15, replace = TRUE)
+)
+rownames(surv_data) <- colnames(meth_data)
+
+# Run bootstrap (using B=5 and p_threshold=1 for a fast, error-free example)
+res <- bootstrap_validate_ims(
+  meth_data = meth_data,
+  surv_data = surv_data,
+  immune_genes = c("CD274", "PDCD1"),
+  B = 5,
+  p_threshold = 1.0,
+  min_cpgs = 1
+)
+}

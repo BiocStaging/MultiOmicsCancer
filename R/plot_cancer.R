@@ -33,23 +33,22 @@
 #' @return A \code{ggplot} object.
 #'
 #' @examples
-#' \dontrun{
-#' # Volcano plot of differential expression
-#' deg <- analyze_expression(brca)
-#' plot_cancer(deg, plot_type = "volcano")
+#' library(MultiAssayExperiment)
+#' library(SummarizedExperiment)
 #'
-#' # Volcano plot of differential methylation
-#' dmr <- analyze_methylation(brca)
-#' plot_cancer(dmr, plot_type = "volcano")
+#' expr_mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
+#' rownames(expr_mat) <- paste0("Gene", 1:10)
+#' colnames(expr_mat) <- paste0("Sample", 1:10)
 #'
-#' # Survival plot
-#' surv <- analyze_survival(brca, feature_name = "TP53")
-#' plot_cancer(plot_type = "survival", surv_result = surv)
-#' }
+#' clin_data <- DataFrame(
+#'   sample_type = rep(c("normal", "tumor"), each = 5),
+#'   row.names = colnames(expr_mat)
+#' )
 #'
-#' @importFrom rlang .data
-#' @importFrom utils head
-#' @export
+#' se_expr <- SummarizedExperiment(assays = list(expression = expr_mat))
+#' mae <- MultiAssayExperiment(experiments = list(expression = se_expr), colData = clin_data)
+#'
+#' plot_cancer(mae, plot_type = "boxplot", feature_name = "Gene1")
 plot_cancer <- function(data = NULL,
                         plot_type = c("volcano", "heatmap", "correlation", "survival"),
                         title = NULL,

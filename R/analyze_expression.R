@@ -47,27 +47,24 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
-#' # Load data
-#' brca <- load_cancer_data("brca_tcga")
+#' # Create a minimal mock MultiAssayExperiment for testing
+#' library(MultiAssayExperiment)
+#' library(SummarizedExperiment)
 #'
-#' # Differential expression: normal vs tumor with limma
-#' deg <- analyze_expression(brca, method = "limma")
+#' expr_mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
+#' rownames(expr_mat) <- paste0("Gene", 1:10)
+#' colnames(expr_mat) <- paste0("Sample", 1:10)
 #'
-#' # With DESeq2 on raw counts
-#' deg_deseq <- analyze_expression(brca, method = "DESeq2")
+#' clin_data <- DataFrame(
+#'   sample_type = rep(c("normal", "tumor"), each = 5),
+#'   row.names = colnames(expr_mat)
+#' )
 #'
-#' # Filter significant genes
-#' sig_deg <- deg[deg$significant, ]
+#' se <- SummarizedExperiment(assays = list(expression = expr_mat))
+#' mae <- MultiAssayExperiment(experiments = list(expression = se), colData = clin_data)
 #'
-#' # Lower the logFC cutoff to get more genes (higher sensitivity)
-#' deg_sensitive <- analyze_expression(brca, logFC_cutoff = 0.5)
-#'
-#' # Raise the logFC cutoff for stricter results (higher specificity)
-#' deg_strict <- analyze_expression(brca, logFC_cutoff = 1.5)
-#' }
-#'
-#' @export
+#' deg <- analyze_expression(mae, group_levels = c("normal", "tumor"))
+#' head(deg)
 analyze_expression <- function(mae,
                                assay_name = "expression",
                                group_column = "sample_type",

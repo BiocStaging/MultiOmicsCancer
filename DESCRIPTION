@@ -1,6 +1,6 @@
 Package: MultiOmicsCancer
 Title: Integrative Multi-Omics Analysis for Pan-Cancer Research
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     person("Maryam", "Emami", , "Maryam.emami1499@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-7710-3274"))
@@ -42,10 +42,12 @@ biocViews:
     DNAMethylation,
     GeneExpression,
     Transcriptomics,
-    Cancer,
     DifferentialExpression,
-    Survival,
-    Multiomics
+    DifferentialMethylation,
+    MultipleComparison,
+    Survival
+URL: https://github.com/maryam6770/MultiOmicsCancer
+BugReports: https://github.com/maryam6770/MultiOmicsCancer/issues
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.0
 VignetteBuilder: knitr

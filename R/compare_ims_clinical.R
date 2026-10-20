@@ -12,6 +12,30 @@
 #' @return A list with C-index for IMS alone, clinical alone, both,
 #'   Delta C-index, and LRT p-value.
 #' @export
+#' @examples
+#' set.seed(123)
+#' n <- 60
+#'
+#' # Mock IMS values
+#' ims_values <- setNames(rnorm(n), paste0("Sample", 1:n))
+#'
+#' # Mock survival data
+#' surv_data <- data.frame(
+#'   time = runif(n, 10, 100),
+#'   status = sample(c(0, 1), n, replace = TRUE),
+#'   row.names = names(ims_values)
+#' )
+#'
+#' # Mock clinical variable (e.g., binary Stage)
+#' clinical_var <- setNames(sample(c("Low", "High"), n, replace = TRUE), names(ims_values))
+#'
+#' # Run comparison
+#' res <- compare_ims_clinical(
+#'   ims_values = ims_values,
+#'   surv_data = surv_data,
+#'   clinical_var = clinical_var,
+#'   var_name = "Stage"
+#' )
 compare_ims_clinical <- function(ims_values, surv_data, clinical_var,
                                  var_name = 'Clinical') {
   common <- intersect(names(ims_values), rownames(surv_data))

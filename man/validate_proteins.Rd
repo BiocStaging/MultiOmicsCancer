@@ -19,3 +19,15 @@ A data frame with columns: gene, protein_exists, protein_name.
 \description{
 Validates genes using UniProt (protein existence).
 }
+\examples{
+# Fast, offline example (no internet connection required)
+genes <- c("BRCA1", "TP53", "CD274")
+res <- validate_proteins(genes, use_uniprot = FALSE)
+head(res)
+
+\donttest{
+# Online example (requires internet connection to query UniProt)
+res_online <- validate_proteins(genes, use_uniprot = TRUE)
+head(res_online)
+}
+}
